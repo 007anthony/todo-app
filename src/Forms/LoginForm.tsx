@@ -1,15 +1,32 @@
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { ChangeEvent, FormEvent, useState } from "react";
 
-function Login() {
+export interface params {
+    login:(email:string, password:string) => void;
+}
 
-    function login() {
+function LoginForm(params:params) {
 
+    const [loginInfo, setLoginInfo] = useState({"email": "", "password": ""});
+
+    function sendLogin(event:FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        params.login(loginInfo.email, loginInfo.password);
+    }
+
+    function onChange(event: ChangeEvent<HTMLInputElement>) {
+        let {name, value} = event.target;
+
+        setLoginInfo({...loginInfo, [name]:value});
     }
 
     return(
-        <form onSubmit={login}>
-            <input type="email" name="email"/>
-            <input type="password" name="password"/>
+        <form onSubmit={sendLogin}>
+            <input type="email" name="email" onChange={onChange}/>
+            <input type="password" name="password" onChange={onChange}/>
             <input type="submit"/>
         </form>
     );
 }
+
+export default LoginForm;
