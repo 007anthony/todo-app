@@ -72,6 +72,10 @@ function App() {
       });
     }
 
+    function logout() {
+      setToken("");
+    }
+
     function detailTodo() {
       return todos.filter(currentTodo => currentTodo.id == Number.parseInt(searchParams.get("id")??""))[0];
     }
@@ -82,7 +86,7 @@ function App() {
       <div className="app">
         
         <Routes>
-          <Route path='/' element={token !== ""?<TodoList todos={todos} fillEditTodo={fillEditForm} editTodo={editTodo} deleteTodo={deleteTodo}/>:<Navigate to="/login"/>}></Route>
+          <Route path='/' element={token !== ""?<TodoList logout={logout} todos={todos} fillEditTodo={fillEditForm} editTodo={editTodo} deleteTodo={deleteTodo}/>:<Navigate to="/login"/>}></Route>
           <Route path='/create' element={token !== ""?<CreateTodo addTodo={createTodo}/>:<Navigate to="/login"/>}></Route>
           <Route path='/token' element={<p>{token}</p>}></Route>
           <Route path='/edit' element={token !== ""?<EditTodo todo={detailTodo()} editTodo={editTodo}/>:<Navigate to="/login"/>}></Route>

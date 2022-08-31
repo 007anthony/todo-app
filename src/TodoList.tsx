@@ -7,6 +7,7 @@ export interface params {
     fillEditTodo:(todo:Todo) => void;
     deleteTodo:(id:number) => void;
     editTodo:(todo:Todo) => void;
+    logout:() => void;
 }
 
 function TodoList(params:params) {
@@ -23,6 +24,7 @@ function TodoList(params:params) {
             <ul>
                 <li><Link to="/create">Create ToDo</Link></li>
                 <li><Link to="/edit">Edit ToDo</Link></li>
+                <li><a href="javascript:void(0)" onClick={params.logout}>logout</a></li>
             </ul>
         <table>
             <thead>
