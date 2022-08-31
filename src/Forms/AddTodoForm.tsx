@@ -27,7 +27,8 @@ function CreateTodo(params:params) {
 
     return(
         <form onSubmit={createTodo}>
-            <input type="text" name="title" onChange={onChange}/>
+            <label htmlFor="title">Title</label>
+            <input type="text" id="title" name="title" onChange={onChange}/>
             <input type="submit"/>
         </form>
     );

@@ -22,8 +22,8 @@ function LoginForm(params:params) {
 
     return(
         <form onSubmit={sendLogin}>
-            <input type="email" name="email" onChange={onChange}/>
-            <input type="password" name="password" onChange={onChange}/>
+            <input type="email" name="email" onChange={onChange} required/>
+            <input type="password" name="password" onChange={onChange} required/>
             <input type="submit"/>
         </form>
     );

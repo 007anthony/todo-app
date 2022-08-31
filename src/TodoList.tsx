@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { ChangeEvent } from 'react';
-import EditTodo from './Forms/EditTodoForm';
+import { Link } from 'react-router-dom';
 import Todo from './Todo';
 
 export interface params {
@@ -20,6 +19,11 @@ function TodoList(params:params) {
     }
 
     return(
+        <div>
+            <ul>
+                <li><Link to="/create">Create ToDo</Link></li>
+                <li><Link to="/edit">Edit ToDo</Link></li>
+            </ul>
         <table>
             <thead>
                 <tr>
@@ -35,15 +39,17 @@ function TodoList(params:params) {
                         return(
                             <tr key={todo.id}>
                                 <td>{todo.id}</td>
-                                <td>{todo.title}</td>
+                                <td><Link to={"/todo?id=" + todo.id}>{todo.title}</Link></td>
                                 <td><input type="checkbox" defaultChecked={todo.completed} onChange={(event) => toggleCompleted(event, todo)}/></td>
-                                <td><button onClick={() => params.fillEditTodo(todo)}>edit</button><button onClick={() => params.deleteTodo(todo.id)}>delete</button></td>
+                                <td><Link to={"/edit?id=" + todo.id}>edit</Link><a href='javascript:void'onClick={() => params.deleteTodo(todo.id)}>delete</a></td>
                             </tr>
                         )})
                 }
             </tbody>
             
         </table>
+        </div>
+       
     );
 }
 

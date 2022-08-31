@@ -21,7 +21,8 @@ function EditTodo(params:params) {
 
     return(
         <form onSubmit={onSubmit}>
-            <input type="text" name="title" defaultValue={params.todo.title} onChange={onChange}/>
+            <label htmlFor="title"></label>
+            <input type="text" id="title" name="title" defaultValue={params.todo.title} onChange={onChange}/>
             <input type="submit"/>
         </form>
     );
